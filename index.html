@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Стандарт Сангийн Гид</title>
+    <link rel="stylesheet" href="style.css"> <!-- CSS файлыг холбох -->
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">C++ Стандарт Сангийн гарын авлага</div>
+        <div class="links">
+            <a href="index.html">Нүүр хуудас</a>
+            <a href="#">Туршилтууд</a>
+            <a href="guide.html">Стандарт Сангийн Гарын Авлага</a>
+            <a href="login.html">Бүртгүүлэх</a>
+             
+
+        </div>
+    </nav>
+    <div class="hero">
+        <h1>C++ Стандарт Сан</h1>
+        <p>C++ стандарт санг эзэмшихийн тулд таньд хэрэгтэй бүх мэдээллийг эндээс олж авна уу.</p>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Жишээ: std::vector">
+            <button onclick="searchLibrary()">Хайх</button>
+        </div>
+    </div>
+
+    <div class="content" id="searchResults">
+        <h2>C++ Стандарт Сан гэж юу вэ?</h2>
+        <p>C++ Стандарт Сан нь C++ хэлний үндсэн стандартын дагуу бичигдсэн ангиуд болон функцуудын цуглуулга юм. Энэ нь өгөгдлийн бүтэц, алгоритм, оролт/гаралт, болон бусад чухал функцуудыг агуулдаг.</p>
+
+        <h2>Гол онцлог:</h2>
+        <ul id="features-list">
+            <ul>
+                <li><b>&lt;iostream&gt;</b> – <i>Орлого/гаргалт</i>: Энэ нь C++-д стандарт орлого, гаргалтын үйлдлийг гүйцэтгэхэд ашиглагддаг сан юм. Жишээлбэл, <code>cin</code>, <code>cout</code>, <code>cerr</code> гэх мэт.</li>
+                <li><b>&lt;vector&gt;</b> – <i>Динамик массив</i>: Энэ нь динамик хэмжээтэй массивыг илэрхийлдэг, шаардлагатай үед хэмжээгээ өөрчилж болно. <code>std::vector</code> ашиглан тухайн элементүүдийн жагсаалтыг хадгалах боломжтой.</li>
+                <li><b>&lt;string&gt;</b> – <i>Текстийн мөр</i>: Мөрүүдийг хадгалах, боловсруулахад ашиглагддаг сан. <code>std::string</code> нь текстийг удирдах зориулалттай тусгай төрлийн өгөгдөл юм.</li>
+                <li><b>&lt;algorithm&gt;</b> – <i>Алгоритм (жишээ нь: сортлох, хайх)</i>: Энэ сан нь янз бүрийн алгоритмууд (сортлох, хайх гэх мэт) болон үйлдлүүдийг агуулдаг. Жишээ нь, <code>std::sort</code>, <code>std::find</code> гэх мэт.</li>
+                <li><b>&lt;map&gt;</b> – <i>Мап (ключ-значение)</i>: Энэ нь түлхүүр-утга хослолыг хадгалах зориулалттай контейнер бөгөөд <code>std::map</code> нь элементийн түлхүүрээр ханддаг.</li>
+                <li><b>&lt;set&gt;</b> – <i>Set (сүүлд нэмэгдсэн элемент нь уник)</i>: <code>std::set</code> нь цөөн тооны давтагдсан элементүүдийг хадгалахад ашиглагддаг. Давтагдахгүй элементүүдийг хадгална.</li>
+                <li><b>&lt;deque&gt;</b> – <i>Динамик хоёр талын мөр</i>: <code>std::deque</code> нь хоёр талаас нь элементүүдийг нэмэх, устгах боломжийг олгодог. Энэ нь динамик массив шиг ч, холбосон жагсаалт шиг ч ажилладаг.</li>
+                <li><b>&lt;list&gt;</b> – <i>Холбосон жагсаалт</i>: <code>std::list</code> нь хоёр талын холбоотой жагсаалт бөгөөд элементүүд нь хаягаар холбогдсон байдаг. Энэ нь эргүүлэх, устгах үйлдлүүдийг хурдан гүйцэтгэдэг.</li>
+                <li><b>&lt;queue&gt;</b> – <i>Үлдэгдэл жагсаалт (FIFO)</i>: <code>std::queue</code> нь "анхны орж ирсэн, анхны гарах" зарчмаар ажилладаг. Энэ нь энгийн үүрэг гүйцэтгэхэд ашиглагддаг.</li>
+                <li><b>&lt;stack&gt;</b> – <i>Стек (LIFO)</i>: <code>std::stack</code> нь "сүүлд орж ирсэн, анх удаа гарах" зарчмаар ажилладаг. Энэ нь өдгөө ашиглахад тохиромжтой контейнер юм.</li>
+                <li><b>&lt;array&gt;</b> – <i>Статик массив</i>: <code>std::array</code> нь тухайн хэмжээтэй (статик) массивийг илэрхийлдэг. Массив нь өөрийн хэмжээгээр хязгаарлагддаг.</li>
+                <li><b>&lt;bitset&gt;</b> – <i>Битийн сан</i>: <code>std::bitset</code> нь битүүдийг хадгалах контейнер бөгөөд битийн манипуляцийг хийхэд ашиглагддаг.</li>
+                <li><b>&lt;forward_list&gt;</b> – <i>Тагийн жагсаалт (стандарт холбосон жагсаалтаас арай хурдан)</i>: <code>std::forward_list</code> нь холбосон жагсаалтын нэг төрлийн хувилбар бөгөөд элементүүдийг нэг талаас нь зөвхөн унших боломжтой.</li>
+                <li><b>&lt;tuple&gt;</b> – <i>Tuple (хэрэглэгчийн тодорхойлсон элементүүдийн багц)</i>: <code>std::tuple</code> нь янз бүрийн төрлийн элементүүдийг нэгтгэн хадгалах боломжтой.</li>
+                <li><b>&lt;map&gt;, &lt;unordered_map&gt;</b> – <i>Мап, хямдхан олоход тохиромжтой</i>: <code>std::unordered_map</code> нь <code>std::map</code>-ын төрлийн хэлбэр боловч түлхүүрүүдийг илүү хурдан хайх боломжтой байдаг.</li>
+                <li><b>&lt;numeric&gt;</b> – <i>Математикийн үйлдлүүд</i>: <code>std::numeric_limits</code> зэрэг функцууд нь тооны хязгаарууд болон утга хэмжээг авч үзэхэд тусалдаг.</li>
+                <li><b>&lt;functional&gt;</b> – <i>Функцийн объект болон функцийн тооцоолол</i>: <code>std::function</code> болон бусад хэрэглүүрүүдийг ашиглан функцийн объектуудыг удирдах боломжтой.</li>
+                <li><b>&lt;memory&gt;</b> – <i>Оюун ухааны менежмент (smart pointers гэх мэт)</i>: <code>std::shared_ptr</code>, <code>std::unique_ptr</code> зэрэг ухаалаг зааварлагчийг ашиглан ой санамжийг удирдах боломжтой.</li>
+                <li><b>&lt;exception&gt;</b> – <i>Алдаа гарсан үед хэрэглэгдэх механизм</i>: <code>std::exception</code> зэрэг анхааруулах функцууд нь алдааны нөхцөлд ашиглагддаг.</li>
+                <li><b>&lt;type_traits&gt;</b> – <i>Үйлдлийн хичээлийн шинж чанар</i>: <code>std::is_integral</code> зэрэг функцууд нь өгөгдлийн төрөл, шинж чанарыг тодорхойлох боломжийг олгодог.</li>
+            </ul>
+        <p>Туршилт болон тоймын хэсгүүдийг судалж, тус бүрийн талаар дэлгэрэнгүй мэдээлэл аваарай.</p>
+    </div>
+
+    <div class="mascot">
+        <img src="https://via.placeholder.com/150" alt="Маскот">
+    </div>
+    <script>
+        function searchLibrary() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const resultsDiv = document.getElementById('searchResults');
+            const features = [
+                "<b>&lt;iostream&gt;</b> – Орлого/гаргалт",
+                "<b>&lt;vector&gt;</b> – Динамик массив",
+                "<b>&lt;string&gt;</b> – Текстийн мөр",
+                "<b>&lt;algorithm&gt;</b> – Алгоритм (жишээ нь: сортлох, хайх)",
+                "<b>&lt;map&gt;</b> – Мап (ключ-значение)",
+                "<b>&lt;set&gt;</b> – Set (сүүлд нэмэгдсэн элемент нь уник)",
+                "<b>&lt;deque&gt;</b> – Динамик хоёр талын мөр",
+                "<b>&lt;list&gt;</b> – Холбосон жагсаалт",
+                "<b>&lt;queue&gt;</b> – Үлдэгдэл жагсаалт (FIFO)",
+                "<b>&lt;stack&gt;</b> – Стек (LIFO)",
+                "<b>&lt;array&gt;</b> – Статик массив",
+                "<b>&lt;bitset&gt;</b> – Битийн сан",
+                "<b>&lt;forward_list&gt;</b> – Тагийн жагсаалт (стандарт холбосон жагсаалтаас арай хурдан)",
+                "<b>&lt;tuple&gt;</b> – Tuple (хэрэглэгчийн тодорхойлсон элементүүдийн багц)",
+                "<b>&lt;map&gt;, &lt;unordered_map&gt;</b> – Мап, хямдхан олоход тохиромжтой",
+                "<b>&lt;numeric&gt;</b> – Математикийн үйлдлүүд",
+                "<b>&lt;functional&gt;</b> – Функцийн объект болон функцийн тооцоолол",
+                "<b>&lt;memory&gt;</b> – Оюун ухааны менежмент (smart pointers гэх мэт)",
+                "<b>&lt;exception&gt;</b> – Алдаа гарсан үед хэрэглэгдэх механизм",
+                "<b>&lt;type_traits&gt;</b> – Үйлдлийн хичээлийн шинж чанар"
+            ];
+            let results = [];
+
+            features.forEach(function(feature) {
+                if (feature.toLowerCase().includes(searchInput)) {
+                    results.push(feature);
+                }
+            });
+
+            // Хайлтын үр дүнг харуулах
+            if (results.length > 0) {
+                resultsDiv.innerHTML = "<h2>Хайлтын үр дүн:</h2><ul>" + results.map(item => "<li>" + item + "</li>").join('') + "</ul>";
+            } else {
+                resultsDiv.innerHTML = "<h2>Таны хайсан зүйл олдсонгүй: '" + searchInput + "'</h2>";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .search-box {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .search-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-button:hover {
+            background-color: #45a049;
+        }
+        .results {
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+        .results li {
+            background-color: #f2f2f2;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .result-item b {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Search Page</h2>
+    <input type="text" id="searchInput" class="search-box" placeholder="Enter search term..." />
+    <button class="search-button" onclick="search()">Search</button>
+
+    <ul id="searchResults" class="results"></ul>
+</div>
+
+<script>
+    // Data that will be searched
+    const data = [
+        { title: "&lt;iostream&gt;", description: "Орлого/гаргалт: Энэ нь C++-д стандарт орлого, гаргалтын үйлдлийг гүйцэтгэхэд ашиглагддаг сан юм. Жишээлбэл, <code>cin</code>, <code>cout</code>, <code>cerr</code> гэх мэт." },
+        { title: "&lt;vector&gt;", description: "Динамик массив: Энэ нь динамик хэмжээтэй массивыг илэрхийлдэг, шаардлагатай үед хэмжээгээ өөрчилж болно. <code>std::vector</code> ашиглан тухайн элементүүдийн жагсаалтыг хадгалах боломжтой." },
+        { title: "&lt;string&gt;", description: "Текстийн мөр: Мөрүүдийг хадгалах, боловсруулахад ашиглагддаг сан. <code>std::string</code> нь текстийг удирдах зориулалттай тусгай төрлийн өгөгдөл юм." },
+        { title: "&lt;algorithm&gt;", description: "Алгоритм (жишээ нь: сортлох, хайх): Энэ сан нь янз бүрийн алгоритмууд (сортлох, хайх гэх мэт) болон үйлдлүүдийг агуулдаг. Жишээ нь, <code>std::sort</code>, <code>std::find</code> гэх мэт." },
+        { title: "&lt;map&gt;", description: "Мап (ключ-значение): Энэ нь түлхүүр-утга хослолыг хадгалах зориулалттай контейнер бөгөөд <code>std::map</code> нь элементийн түлхүүрээр ханддаг." },
+        { title: "&lt;set&gt;", description: "Set (сүүлд нэмэгдсэн элемент нь уник): <code>std::set</code> нь цөөн тооны давтагдсан элементүүдийг хадгалахад ашиглагддаг. Давтагдахгүй элементүүдийг хадгална." },
+        { title: "&lt;deque&gt;", description: "Динамик хоёр талын мөр: <code>std::deque</code> нь хоёр талаас нь элементүүдийг нэмэх, устгах боломжийг олгодог. Энэ нь динамик массив шиг ч, холбосон жагсаалт шиг ч ажилладаг." },
+        { title: "&lt;list&gt;", description: "Холбосон жагсаалт: <code>std::list</code> нь хоёр талын холбоотой жагсаалт бөгөөд элементүүд нь хаягаар холбогдсон байдаг. Энэ нь эргүүлэх, устгах үйлдлүүдийг хурдан гүйцэтгэдэг." },
+        { title: "&lt;queue&gt;", description: "Үлдэгдэл жагсаалт (FIFO): <code>std::queue</code> нь 'анхны орж ирсэн, анхны гарах' зарчмаар ажилладаг. Энэ нь энгийн үүрэг гүйцэтгэхэд ашиглагддаг." },
+        { title: "&lt;stack&gt;", description: "Стек (LIFO): <code>std::stack</code> нь 'сүүлд орж ирсэн, анх удаа гарах' зарчмаар ажилладаг. Энэ нь өдгөө ашиглахад тохиромжтой контейнер юм." },
+        { title: "&lt;array&gt;", description: "Статик массив: <code>std::array</code> нь тухайн хэмжээтэй (статик) массивийг илэрхийлдэг. Массив нь өөрийн хэмжээгээр хязгаарлагддаг." },
+        { title: "&lt;bitset&gt;", description: "Битийн сан: <code>std::bitset</code> нь битүүдийг хадгалах контейнер бөгөөд битийн манипуляцийг хийхэд ашиглагддаг." },
+        { title: "&lt;forward_list&gt;", description: "Тагийн жагсаалт (стандарт холбосон жагсаалтаас арай хурдан): <code>std::forward_list</code> нь холбосон жагсаалтын нэг төрлийн хувилбар бөгөөд элементүүдийг нэг талаас нь зөвхөн унших боломжтой." },
+        { title: "&lt;tuple&gt;", description: "Tuple (хэрэглэгчийн тодорхойлсон элементүүдийн багц): <code>std::tuple</code> нь янз бүрийн төрлийн элементүүдийг нэгтгэн хадгалах боломжтой." },
+        { title: "&lt;map&gt;, &lt;unordered_map&gt;", description: "Мап, хямдхан олоход тохиромжтой: <code>std::unordered_map</code> нь <code>std::map</code>-ын төрлийн хэлбэр боловч түлхүүрүүдийг илүү хурдан хайх боломжтой байдаг." },
+        { title: "&lt;numeric&gt;", description: "Математикийн үйлдлүүд: <code>std::numeric_limits</code> зэрэг функцууд нь тооны хязгаарууд болон утга хэмжээг авч үзэхэд тусалдаг." },
+        { title: "&lt;functional&gt;", description: "Функцийн объект болон функцийн тооцоолол: <code>std::function</code> болон бусад хэрэглүүрүүдийг ашиглан функцийн объектуудыг удирдах боломжтой." },
+        { title: "&lt;memory&gt;", description: "Оюун ухааны менежмент (smart pointers гэх мэт): <code>std::shared_ptr</code>, <code>std::unique_ptr</code> зэрэг ухаалаг зааварлагчийг ашиглан ой санамжийг удирдах боломжтой." },
+        { title: "&lt;exception&gt;", description: "Алдаа гарсан үед хэрэглэгдэх механизм: <code>std::exception</code> зэрэг анхааруулах функцууд нь алдааны нөхцөлд ашиглагддаг." },
+        { title: "&lt;type_traits&gt;", description: "Үйлдлийн хичээлийн шинж чанар: <code>std::is_integral</code> зэрэг функцууд нь өгөгдлийн төрөл, шинж чанарыг тодорхойлох боломжийг олгодог." }
+    ];
+
+    // Search function
+    function search() {
+        const query = document.getElementById("searchInput").value.toLowerCase();
+        const resultsContainer = document.getElementById("searchResults");
+        resultsContainer.innerHTML = ''; // Clear previous results
+
+        if (query) {
+            const results = data.filter(item => 
+                item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query)
+            );
+
+            if (results.length > 0) {
+                results.forEach(result => {
+                    const li = document.createElement("li");
+                    li.classList.add("result-item");
+                    li.innerHTML = `<b>${result.title}</b><p>${result.description}</p>`;
+                    resultsContainer.appendChild(li);
+                });
+            } else {
+                resultsContainer.innerHTML = "<li>No results found.</li>";
+            }
+        } else {
+            resultsContainer.innerHTML = "<li>Please enter a search term.</li>";
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бүртгүүлэх</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: #00f;">C++ Стандарт Сангийн гарын авлага</a>
+        </div>
+        <div class="links">
+            <a href="index.html">Нүүр хуудас</a>
+            <a href="#">Туршилтууд</a>
+            <a href="guide.html">Стандарт Сангийн Гарын Авлага</a>
+            <a href="login.html">Нэвтрэх</a>
+            <a href="register.html" class="active">Бүртгүүлэх</a>
+        </div>
+    </nav>
+    <div class="content">
+        <h1>Бүртгүүлэх</h1>
+        <form id="register-form">
+            <label for="email">И-мэйл хаяг:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="username">Хэрэглэгчийн нэр:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Нууц үг:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Бүртгүүлэх</button>
+        </form>
+    </div>
+
+    <script>
+        const registeredUsers = JSON.parse(localStorage.getItem('users')) || [];
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const existingUser = registeredUsers.find(user => user.email === email);
+            if (existingUser) {
+                alert('Та аль хэдийн бүртгэлтэй байна!');
+            } else {
+                registeredUsers.push({ email, username, password });
+                localStorage.setItem('users', JSON.stringify(registeredUsers));
+                alert('Амжилттай бүртгүүллээ!');
+                window.location.href = "index.html";
+            }
+        });
+    </script>
+</body>
+</html>

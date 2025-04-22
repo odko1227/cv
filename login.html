@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нэвтрэх</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: #00f;">C++ Стандарт Сангийн гарын авлага</a>
+        </div>
+        <div class="links">
+            <a href="index.html">Нүүр хуудас</a>
+            <a href="#">Туршилтууд</a>
+            <a href="guide.html">Стандарт Сангийн Гарын Авлага</a>
+            <a href="login.html" class="active">Нэвтрэх</a>
+        </div>
+    </nav>
+    <div class="content">
+        <h1>Нэвтрэх</h1>
+        <form id="login-form">
+            <label for="username">Хэрэглэгчийн нэр:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Нууц үг:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Нэвтрэх</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Анхдагч үйлдлийг зогсооно
+            alert("Та амжилттай нэвтэрлээ!");
+            window.location.href = "index.html"; // Нүүр хуудас руу шилжүүлнэ
+        });
+    </script>
+</body>
+</html>
